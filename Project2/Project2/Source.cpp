@@ -8,6 +8,10 @@ int T, N, K, map[29], shiftmap[29];
 char arr[29];
 vector<int> cnt;
 
+/*
+	testest
+*/
+
 
 int return_hex(char array1) {
 
