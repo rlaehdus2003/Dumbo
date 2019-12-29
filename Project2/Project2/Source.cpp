@@ -11,6 +11,7 @@ vector<int> cnt;
 <<<<<<< HEAD
 /*
 	testestes123123
+	newtest
 */
 =======
 >>>>>>> parent of dbd05a9... test
