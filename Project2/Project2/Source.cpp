@@ -8,9 +8,12 @@ int T, N, K, map[29], shiftmap[29];
 char arr[29];
 vector<int> cnt;
 
+<<<<<<< HEAD
 /*
 	testestes123123
 */
+=======
+>>>>>>> parent of dbd05a9... test
 
 int return_hex(char array1) {
 
