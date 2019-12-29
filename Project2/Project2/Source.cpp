@@ -37,7 +37,7 @@ int return_hex(char array1) {
 	}
 
 }
-//(16^i) * ÇØ´ç ÀÚ¸´¼ö °ª
+//(16^i) * í•´ë‹¹ ìë¦¿ìˆ˜ ê°’
 void shift_arr() {
 
 	int last_value = map[N-1];
@@ -61,9 +61,9 @@ void shift_arr() {
 }
 
 void solve() {
-	int N4 = N / 4; // ·ÎÅ×ÀÌ¼Ç ¼ö && °¢ º¯ÀÇ ¼ıÀÚÀÇ °¹¼ö
+	int N4 = N / 4; // ë¡œí…Œì´ì…˜ ìˆ˜ && ê° ë³€ì˜ ìˆ«ìì˜ ê°¯ìˆ˜
 	bool same_value = false;
-	//int side_size = N / N4; //ÇØ´ç º¯ÀÇ ¼ıÀÚ °¹¼ö
+	//int side_size = N / N4; //í•´ë‹¹ ë³€ì˜ ìˆ«ì ê°¯ìˆ˜
 	int side_sum = 0;
 	for (int z = 0; z < N4; z++) {
 		for (int i = 0; i < N4; i++) {
