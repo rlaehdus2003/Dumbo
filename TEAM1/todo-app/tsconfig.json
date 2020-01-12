@@ -20,6 +20,8 @@
       "dom"
     ]
   },
+  "inculde" :["/src"],
+  "exclude" :["webapp/"],
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
