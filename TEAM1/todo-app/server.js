@@ -12,8 +12,18 @@ var session = require('express-session'); //for maintaining sessions
 var mongoose = require('mongoose'); //for mongodb, database
 var models_user = require('./Angular/Models/user.js'); // refering models in server.js
 
+const dbName = 'Todo'
+let db
 //connection database
-mongoose.connect('mongodb://localhost/AngularizeApp');
+mongoose.connect('mongodb://localhost/database',{ useNewUrlParser: true }, {useUnifiedTopology: true},(err,client)=>{
+  if(err) return console.log('err: ',err)
+
+  //Storing a reference to the database so you can use it later
+
+  db = client.db(dbName)
+  console.log(`Connected MongoDB : ${url}`)
+  console.log(`Database : ${dbName}`)
+});
 
 //import the routers
 var router = require('./Routes/router');
@@ -23,14 +33,16 @@ var authenticate = require('./Routes/authentication')(passport);
 var app = express();
 
 //tell node that My application will use ejs engine for rendering, view engine setup
-app.set('views', path.join(__dirname, 'Views'));
+app.set('views', path.join(__dirname, '/Views'));
 app.set('view engine', 'ejs');
 
 //tell node the global configuration about parser,logger and passport
 app.use(cookieParser());
 app.use(logger('dev'));
 app.use(session({
-  secret: 'keyboard cat'
+  secret: 'keyboard cat',
+  resave : true,
+  saveUninitialized : true
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -40,14 +52,14 @@ app.use(passport.session()); //initializing passport session
 //tell node about these directories that application may get resources from
 app.use('/', router);
 app.use('/auth', authenticate);
-app.use(express.static(path.join(__dirname, 'scripts')));
-app.use(express.static(path.join(__dirname, 'Content')));
-app.use(express.static(path.join(__dirname, 'Angular')));
-app.use(express.static(path.join(__dirname, 'Views/Main')));
-app.use(express.static(path.join(__dirname, 'Views/Authentication')));
+app.use('/scripts',express.static('./scripts'));
+app.use('/Content',express.static('./Content'));
+app.use('/Angular',express.static('./Angular'));
+app.use('/Views/Main',express.static('./Views/Main'));
+app.use('Views/Authentication',express.static('./Views/Authentication'));
 
 //providing auth-api to passport so that it can use it.
-var initPassport = require('./Passport/passport-init');
+var initPassport = require('/Passport/passport-init');
 initPassport(passport);
 
 //running server on node
